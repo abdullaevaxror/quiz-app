@@ -1,5 +1,6 @@
 <?php return array(
     'root' => array(
+<<<<<<< HEAD
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
@@ -7,16 +8,32 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+=======
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => 'fb9ea20d97072bf3f457ff560602bda7716cf48c',
+        'name' => '__root__',
+>>>>>>> 8bbdb705e2bd01ae9b1f91f2c797d1456cc89c17
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => 'fb9ea20d97072bf3f457ff560602bda7716cf48c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
+=======
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => 'fb9ea20d97072bf3f457ff560602bda7716cf48c',
+>>>>>>> 8bbdb705e2bd01ae9b1f91f2c797d1456cc89c17
             'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
@@ -28,6 +45,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'larapack/dd' => array(
+            'pretty_version' => '1.1',
+            'version' => '1.1.0.0',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../larapack/dd',
+            'aliases' => array(),
+            'reference' => '561b5111a13d0094b59b5c81b1572489485fb948',
+            'dev_requirement' => false,
+        ),
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.3',
             'version' => '1.9.3.0',
@@ -35,6 +61,15 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpoption/phpoption',
             'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/deprecation-contracts' => array(
+            'pretty_version' => 'v3.5.1',
+            'version' => '3.5.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
+            'aliases' => array(),
+            'reference' => '74c71c939a79f7d5bf3c1ce9f5ea37ba0114c6f6',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(
@@ -62,6 +97,15 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php80',
             'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/var-dumper' => array(
+            'pretty_version' => 'v6.4.15',
+            'version' => '6.4.15.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/var-dumper',
+            'aliases' => array(),
+            'reference' => '38254d5a5ac2e61f2b52f9caf54e7aa3c9d36b80',
             'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(

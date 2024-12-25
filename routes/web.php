@@ -3,9 +3,12 @@ use App\Router;
 
 use Controllers\UserController;
 
-$userController = UserController::class;
+use App\Models\User;
+$user = new User();
+//dd($user->getUser('abbos@gmail.com', '123456789'));
 
-Router::get('/', [UserController::class, 'index']);
+dd($user->create('Aziz', 'azizbek3465@gamil.com', '123456789'));
+//Router::get('/', [UserController::class, 'index']);
 //Router::get('/', function (){
 //    echo 'Hello World';
 //});
