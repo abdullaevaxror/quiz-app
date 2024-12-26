@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\API;
+namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use App\Traits\Validator;
@@ -17,6 +17,6 @@ class UserController
         ]);
         $user = new User();
         $user->create($userData['full_name'], $userData['email'], $userData['password']);
-        exit();
+        apiResponse(['message' => 'user created'], 201);
     }
 }
