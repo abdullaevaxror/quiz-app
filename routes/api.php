@@ -1,8 +1,8 @@
 <?php
 
-use App\Router;
-$router = new Router();
 
-Router::get('/', function (){
-    echo 'Hello World';
-});
+use Source\Router;
+use App\Controllers\API\UserController;
+
+
+Router::post('/api/users', [UserController::class, 'store']);

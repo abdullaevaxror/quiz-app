@@ -22,6 +22,7 @@ class ComposerStaticInit033e0ec1b3aeed68788f8e8728b1162a
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
+            'Source\\' => 7,
         ),
         'P' => 
         array (
@@ -34,10 +35,6 @@ class ComposerStaticInit033e0ec1b3aeed68788f8e8728b1162a
         'D' => 
         array (
             'Dotenv\\' => 7,
-        ),
-        'C' => 
-        array (
-            'Controllers\\' => 12,
         ),
         'A' => 
         array (
@@ -62,6 +59,10 @@ class ComposerStaticInit033e0ec1b3aeed68788f8e8728b1162a
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
+        'Source\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
@@ -74,13 +75,9 @@ class ComposerStaticInit033e0ec1b3aeed68788f8e8728b1162a
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
-        'Controllers\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/controllers',
-        ),
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
