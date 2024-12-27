@@ -7,5 +7,9 @@ use App\Http\Router;
 Router::get('/todos', [UserController::class, 'index']);
 
 Router::get('/', function (){
-    echo 'Hello World';
+    view('home');
+});
+Router::get('/about', function (){
+
+    view('about');
 });
