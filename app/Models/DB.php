@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Models;
+namespace App\Models;
 
 use PDO;
 
@@ -22,6 +22,9 @@ class DB
      [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
      );
      return $this->conn;
+    }
+    public function getConnection(){
+        return $this->conn;
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Source;
+namespace src;
 
 class Router
 {
@@ -8,7 +8,7 @@ class Router
 
     public function __construct()
     {
-        $this->currentRoute = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); //Bu localhost/ <- Shu bo'sh joydagi yozuvni olib beradi yoki bolmasa "/" shuni oladi
+        $this->currentRoute = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 
     public static function getRoute(): false|array|int|string|null
@@ -26,9 +26,9 @@ class Router
             return false;
         }
 
-        $resourceValue = substr(self::getRoute(), $resourceIndex); // shu yozuvdan kein yana nimadur bormi shuni tekshiradi
+        $resourceValue = substr(self::getRoute(), $resourceIndex);
 
-        if ($limit = mb_stripos($resourceValue, '/')) { // Limitga masalan 90/update bo'lsa 2 qaytadi chunki / 3 uzunlikda turibdi
+        if ($limit = mb_stripos($resourceValue, '/')) {
             return substr($resourceValue, 0, $limit);
         }
 
@@ -39,14 +39,14 @@ class Router
     {
         if (gettype($callback) == 'array')
         {
-            $resourceValue = self::getResource($route);  // getResource dan qaytvotgan returni shunga tenglab olamiz
+            $resourceValue = self::getResource($route);
             if ($resourceValue)
             {
                 $resourceRoute = str_replace('{id}', $resourceValue, $route);
-                if ($resourceRoute == self::getRoute()) // (new static()) = deganimizda obyekt paydo bo'ladi. Routerdan olingan obyekt paydo bo'ladi
+                if ($resourceRoute == self::getRoute())
                 {
-                    (new $callback[0])->{$callback[1]}(); // calbback[0] desak namespace keladi new deb obyekt qilvoramiz. {} <- Probel oldini oladi
-                    exit();  // new $callback[0]->index qilsak hardoim ham index kelavermaydi bu denamik bo'lishi kerak. Nimaga 1 chunki qaysi method ishlashi 1 indexda jonatilgan
+                    (new $callback[0])->{$callback[1]}();
+                    exit();
                 }
             }
             if ($route == self::getRoute())
@@ -58,11 +58,11 @@ class Router
 
 
 
-        $resourceValue = self::getResource($route);  // getResource dan qaytvotgan returni shunga tenglab olamiz
+        $resourceValue = self::getResource($route);
         if ($resourceValue)
         {
             $resourceRoute = str_replace('{id}', $resourceValue, $route);
-            if ($resourceRoute == self::getRoute()) // (new static()) = deganimizda obyekt paydo bo'ladi. Routerdan olingan obyekt paydo bo'ladi
+            if ($resourceRoute == self::getRoute())
             {
                 $callback($resourceValue);
                 exit();

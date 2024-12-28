@@ -5,8 +5,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Source\\": "src/",
-            "App\\": "app/"
+            "App\\": "app/",
+            "Src\\": "src/"
         }
     }
 }

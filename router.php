@@ -1,7 +1,6 @@
 <?php
 
-use Source\Router;
-
+use Src\Router;
 
 
 if (Router::isApiCall()) {
