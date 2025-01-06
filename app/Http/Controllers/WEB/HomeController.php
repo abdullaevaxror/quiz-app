@@ -12,4 +12,8 @@ class HomeController
     {
         view("about");
     }
+    public function login(): void
+    {
+        view("login");
+    }
 }

@@ -11,7 +11,7 @@
             text-align: center;
         }
     </style>
-    <link rel="stylesheet" href="./css/tailwind.css">
+    <link rel="stylesheet" href="src/output.css">
 </head>
 <body>
     <h1 style="color: red">Hello World</h1>
