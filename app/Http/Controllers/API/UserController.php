@@ -35,4 +35,20 @@ class UserController
             ]);
         }
     }
+    public function register()
+    {
+        $userData = $this->validate([
+            'email' => 'string',
+            'password' => 'string'
+
+        ]);
+        $user = new User();
+        if ($user->getUser($userData['email'], $userData['password']))
+        {
+            apiResponse([
+                'message' => 'User  registered successfully',
+                'token'=>$user->api_token
+            ]);
+        }
+    }
 }
