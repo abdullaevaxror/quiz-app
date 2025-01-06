@@ -22,7 +22,7 @@ class ComposerStaticInit033e0ec1b3aeed68788f8e8728b1162a
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
-            'Source\\' => 7,
+            'Src\\' => 4,
         ),
         'P' => 
         array (
@@ -59,7 +59,7 @@ class ComposerStaticInit033e0ec1b3aeed68788f8e8728b1162a
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
-        'Source\\' => 
+        'Src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

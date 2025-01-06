@@ -10,7 +10,6 @@ function view(string $page, array $data = [])
 }
 
 
-
 function redirect(string $url)
 {
     header("Location: $url");
@@ -21,7 +20,7 @@ function dumpDie($value)
 {
     var_dump($value);
     exit();
-}  // Xatoliklarni tekshirib oldini olish uchun
+}
 #[NoReturn] function apiResponse($data, $status = 200): void
 {
     header('Content-Type: application/json');

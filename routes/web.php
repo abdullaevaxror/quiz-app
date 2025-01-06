@@ -1,18 +1,15 @@
 <?php
-use App\Http\Controllers\HomeController;  // HomeController import qilish
+
 use App\Http\Controllers\API\UserController;
-use App\Http\Router;
+use App\Http\Controllers\Web\HomeController;
+use src\Router;
 
 
 Router::get('/todos', [UserController::class, 'index']);
-
-Router::get('/', function (){
-    view('home');
-});
-
-Router::get('/about', function (){
-
-    view('about');
-});
+Router::get('/home', [HomeController::class, 'home']);
+Router::get('/about', [HomeController::class, 'about']);
 Router::get('/login', [HomeController::class, 'login']);
+Router::get('/register', [HomeController::class, 'register']);
+
+
 
