@@ -21,6 +21,7 @@ function dumpDie($value)
     var_dump($value);
     exit();
 }
+
 #[NoReturn] function apiResponse($data, $status = 200): void
 {
     header('Content-Type: application/json');

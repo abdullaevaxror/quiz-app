@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\Web\HomeController;
-use src\Router;
+use Src\Router;
 
 
 Router::get('/todos', [UserController::class, 'index']);

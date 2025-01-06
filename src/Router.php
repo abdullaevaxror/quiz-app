@@ -58,7 +58,7 @@ class Router
 
 
 
-        $resourceValue = self::getResource($route);  // getResource dan qaytvotgan returni shunga tenglab olamiz
+        $resourceValue = self::getResource($route);
         if ($resourceValue)
         {
             $resourceRoute = str_replace('{id}', $resourceValue, $route);
