@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
-    <link rel="stylesheet" href="css/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gradient-to-b from-gray-50 to-gray-100">
@@ -13,14 +12,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
-                <a href="#"><h1 class="text-2xl font-bold text-indigo-600">Quiz App</h1></a>
+                <h1 class="text-2xl font-bold text-indigo-600">Quiz App</h1>
             </div>
             <div class="flex items-center space-x-4">
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="#features" class="text-gray-600 hover:text-gray-900">Features</a>
                     <a href="#how-it-works" class="text-gray-600 hover:text-gray-900">How It Works</a>
-                    <a href="/login" class="text-gray-600 hover:text-gray-900">Login</a>
-                    <a href="/register"
+                    <a href="login.html" class="text-gray-600 hover:text-gray-900">Login</a>
+                    <a href="add-quiz.php"
                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
                         Register
                     </a>
