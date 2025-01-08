@@ -1,10 +1,22 @@
-function test() {
-    let errorMessage = document.getElementById("forTest"),
-        email = document.getElementById("email"),
-        password = document.getElementById("password");
+async function login() {
+    let form = document.getElementById("form"),
+        formData = new FormData(form);
+    fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        body:formData
+    })
+        .then(function (response) {
 
-    if (email.value === "" || password.value === "") {
-        errorMessage.innerHTML = "email va password ni toldir";
-        errorMessage.style.color = "red";
-    }
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        })
+        .then(function (data) {
+            localStorage.setItem('token', data.token);
+            console.log(localStorage.getItem('token'));
+        })
+        .catch(function (error) {
+            console.error(error)
+        });
 }

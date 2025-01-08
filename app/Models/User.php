@@ -13,13 +13,13 @@ class User extends DB
     {
         $query = "INSERT INTO users (full_name, email, password,updated_at, created_at) 
         VALUES (:full_name, :email, :password, NOW(),NOW())";
-       $this->conn
+        $this->conn
             ->prepare($query)
             ->execute([
-            ':full_name' => $fullName,
-            ':email' => $email,
-            ':password' => password_hash($password, PASSWORD_DEFAULT)
-        ]);
+                ':full_name' => $fullName,
+                ':email' => $email,
+                ':password' => password_hash($password, PASSWORD_DEFAULT)
+            ]);
         $userId = $this->conn->lastInsertId();
         $this->createApiToken($userId);
         return $userId;
@@ -34,7 +34,7 @@ class User extends DB
             ':email' => $email,
         ]);
         $user= $stmt->fetch();
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && password_verify($password, $user->password)) {
             $this->createApiToken($user->id);
             return true;
         }
@@ -43,5 +43,5 @@ class User extends DB
 
 
 
-}
+    }
 }
