@@ -13,7 +13,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex items-center">
-                <h1 class="text-2xl font-bold text-indigo-600">Quiz App</h1>
+                <a href="#"><h1 class="text-2xl font-bold text-indigo-600">Quiz App</h1></a>
             </div>
             <div class="flex items-center space-x-4">
                 <div class="hidden md:flex items-center space-x-4">
