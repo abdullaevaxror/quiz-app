@@ -19,9 +19,11 @@ class DB
      $this->db_pass=$_ENV['DB_PASS'];
      $this->db_name=$_ENV['DB_NAME'];
      $this->conn=new PDO("mysql:host=$this->db_host;dbname=$this->db_name", $this->db_user, $this->db_pass,
-     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+     [
+         PDO::ATTR_DEFAULT_FETCH_MODE=> PDO::FETCH_OBJ
+         ]
      );
-     return $this->conn;
+
     }
     public function getConnection(){
         return $this->conn;

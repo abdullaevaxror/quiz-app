@@ -34,7 +34,7 @@ class User extends DB
             ':email' => $email,
         ]);
         $user= $stmt->fetch();
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && password_verify($password, $user->password)) {
             $this->createApiToken($user->id);
             return true;
         }
