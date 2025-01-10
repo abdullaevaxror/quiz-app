@@ -118,5 +118,11 @@ class Router
     {
         return mb_stripos(self::getRoute(), '/api') === 0;
     }
-
+ public static function notFound(): void
+ {
+     if (self::isApiCall()){
+         apiResponse(['error'=>'Not found'], 404);
+     }
+     view('404');
+ }
 }
