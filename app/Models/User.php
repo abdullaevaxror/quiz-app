@@ -3,13 +3,13 @@
 namespace App\Models;
 
 
-
 use App\Traits\HasApiTokens;
 
 class User extends DB
 {
     use HasApiTokens;
-    public  function create(string $fullName, string $email, string $password): bool
+
+    public function create(string $fullName, string $email, string $password): bool
     {
         $query = "INSERT INTO users (full_name, email, password,updated_at, created_at) 
         VALUES (:full_name, :email, :password, NOW(),NOW())";
@@ -25,22 +25,21 @@ class User extends DB
         return $userId;
 
     }
+
     public function getUser(string $email, string $password): bool
     {
         $query = "SELECT * FROM users WHERE email = :email";
-        $stmt=$this->conn
+        $stmt = $this->conn
             ->prepare($query);
         $stmt->execute([
             ':email' => $email,
         ]);
-        $user= $stmt->fetch();
+        $user = $stmt->fetch();
         if ($user && password_verify($password, $user->password)) {
             $this->createApiToken($user->id);
             return true;
         }
         return false;
-
-
 
 
     }

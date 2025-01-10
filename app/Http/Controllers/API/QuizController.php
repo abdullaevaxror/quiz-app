@@ -15,7 +15,7 @@ class QuizController
             $token = str_replace('Bearer ', '', $bearer);
             apiResponse([
                 'message' => 'Quiz create successfully',
-            ],201);
+            ], 201);
         }
     }
 }

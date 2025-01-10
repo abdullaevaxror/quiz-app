@@ -10,17 +10,15 @@ class Auth
     public static function check(): bool
     {
         $headers = getallheaders();
-        if (!isset($headers['Authorization']))
-        {
+        if (!isset($headers['Authorization'])) {
             apiResponse([
                 'message' => 'Unauthorized'
-            ],403);
+            ], 403);
         }
-        if (!str_starts_with($headers['Authorization'], 'Bearer '))
-        {
+        if (!str_starts_with($headers['Authorization'], 'Bearer ')) {
             apiResponse([
                 'message' => 'Authorization format is invalid, allowed format is Bearer'
-            ],400);
+            ], 400);
         }
 
         $token = str_replace('Bearer ', '', $headers['Authorization']);
@@ -32,11 +30,10 @@ class Auth
             ':token' => $token
         ]);
         $apiToken = $stmt->fetch();
-        if (!$apiToken)
-        {
+        if (!$apiToken) {
             apiResponse([
                 'message' => 'Unauthorized'
-            ],403);
+            ], 403);
         }
         return true;
     }

@@ -21,4 +21,5 @@ function apiFetch(uri, option = {}) {
             throw error;
         });
 }
+
 export default apiFetch;
