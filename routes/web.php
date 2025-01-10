@@ -13,4 +13,4 @@ Router::get('/login', [HomeController::class, 'login']);
 Router::get('/register', [HomeController::class, 'register']);
 Router::get('/dashboard', [UserController::class, 'home']);
 
-
+Router::notFound();

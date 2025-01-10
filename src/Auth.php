@@ -13,7 +13,7 @@ class Auth
         if (!isset($headers['Authorization'])) {
             apiResponse([
                 'message' => 'Unauthorized'
-            ], 403);
+            ], 401);
         }
         if (!str_starts_with($headers['Authorization'], 'Bearer ')) {
             apiResponse([
@@ -33,7 +33,7 @@ class Auth
         if (!$apiToken) {
             apiResponse([
                 'message' => 'Unauthorized'
-            ], 403);
+            ], 401);
         }
         return true;
     }
