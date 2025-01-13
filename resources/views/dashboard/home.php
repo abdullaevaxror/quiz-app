@@ -1,22 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Quiz App</title>
-    <link rel="stylesheet" href="css/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100">
 <div class="min-h-screen flex">
     <!-- Sidebar -->
-    <aside class="bg-white w-64 min-h-screen flex flex-col shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in fixed md:static z-30"
-           id="sidebar">
+    <aside class="bg-white w-64 min-h-screen flex flex-col shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in fixed md:static z-30" id="sidebar">
         <div class="p-4 border-b flex items-center justify-between">
             <h2 class="text-2xl font-bold text-gray-800">Quiz App</h2>
             <div>
-                <button class="md:hidden text-gray-600"
-                        onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+                <button class="md:hidden text-gray-600" onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
                     <i class="fas fa-close text-xl"></i>
                 </button>
             </div>
@@ -42,8 +41,7 @@
         <!-- Top Navigation -->
         <header class="bg-white shadow-sm">
             <div class="h-16 flex items-center justify-between px-4">
-                <button class="md:hidden text-gray-600"
-                        onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+                <button class="md:hidden text-gray-600" onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
                 <div class="flex items-center space-x-4">
@@ -61,14 +59,12 @@
             <!-- Quick Actions -->
             <div class="mb-8">
                 <div class="flex flex-wrap gap-4">
-                    <a href="create-quiz.html"
-                       class="flex-1 min-w-[200px] bg-blue-600 text-white p-4 rounded-lg shadow hover:bg-blue-700 transition">
+                    <a href="create-quiz.html" class="flex-1 min-w-[200px] bg-blue-600 text-white p-4 rounded-lg shadow hover:bg-blue-700 transition">
                         <i class="fas fa-plus mb-2 text-2xl"></i>
                         <h3 class="font-semibold">Create New Quiz</h3>
                         <p class="text-sm opacity-90">Start creating a new quiz</p>
                     </a>
-                    <a href="statistics.html"
-                       class="flex-1 min-w-[200px] bg-green-600 text-white p-4 rounded-lg shadow hover:bg-green-700 transition">
+                    <a href="statistics.html" class="flex-1 min-w-[200px] bg-green-600 text-white p-4 rounded-lg shadow hover:bg-green-700 transition">
                         <i class="fas fa-chart-line mb-2 text-2xl"></i>
                         <h3 class="font-semibold">View Statistics</h3>
                         <p class="text-sm opacity-90">Check your progress</p>

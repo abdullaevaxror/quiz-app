@@ -22,15 +22,6 @@ class UserController
 
     }
 
-    public function show () {
-        apiResponse([
-            'user' => [
-                'name' => 'John Doe',
-                'email' => 'john@doe.com',
-            ],
-        ]);
-    }
-
     public function login()
     {
         $userData = $this->validate([
@@ -45,11 +36,58 @@ class UserController
             ]);
         }
         apiResponse([
-            'errors' =>
-            [
-                'message' => 'Invalid credentials'
-            ]
-        ],401);
+            'error' =>
+        [
+            'message' => 'Invalid email or password'
+        ]
+        ], 401);
 
     }
+
+
+    public function show()
+    {
+        apiResponse([
+            'user' => [
+                'name' => 'John Doe',
+                'email' => 'john@doe.com',
+            ]
+        ]);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public function register()
+//    {
+//        $userData = $this->validate([
+//            'full_name' => 'string',
+//            'email' => 'string',
+//            'password' => 'string'
+//
+//        ]);
+//        $user = new User();
+//        if ($user->getUser($userData['email'], $userData['password'] , $userData['full_name']))
+//        {
+//            apiResponse([
+//                'message' => 'User  registered successfully',
+//                'token'=>$user->api_token
+//            ]);
+//        }
+//        apiResponse([
+//            'message' => 'Invalid email or password',
+//        ], 401);
+//    }
+

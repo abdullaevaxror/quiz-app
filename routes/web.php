@@ -1,9 +1,9 @@
 <?php
 
-//use App\Http\Controllers\API\UserController;
+
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\UserController;
-use Src\Router;
+use src\Router;
 
 
 Router::get('/todos', [UserController::class, 'index']);
@@ -14,3 +14,6 @@ Router::get('/register', [HomeController::class, 'register']);
 Router::get('/dashboard', [UserController::class, 'home']);
 
 Router::notFound();
+
+
+
