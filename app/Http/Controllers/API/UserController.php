@@ -44,25 +44,12 @@ class UserController
                 'token' => $user->api_token
             ]);
         }
+        apiResponse([
+            'errors' =>
+            [
+                'message' => 'Invalid credentials'
+            ]
+        ],401);
+
     }
-//    public function register()
-//    {
-//        $userData = $this->validate([
-//            'full_name' => 'string',
-//            'email' => 'string',
-//            'password' => 'string'
-//
-//        ]);
-//        $user = new User();
-//        if ($user->getUser($userData['email'], $userData['password'] , $userData['full_name']))
-//        {
-//            apiResponse([
-//                'message' => 'User  registered successfully',
-//                'token'=>$user->api_token
-//            ]);
-//        }
-//        apiResponse([
-//            'message' => 'Invalid email or password',
-//        ], 401);
-//    }
 }

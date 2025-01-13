@@ -1,4 +1,5 @@
 async function login() {
+    event preventDefault();
     let form = document.getElementById("form"),
         formData = new FormData(form);
 
@@ -25,6 +26,17 @@ async function login() {
         });
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // async function register() {
 //     let form = document.getElementById("form"),
