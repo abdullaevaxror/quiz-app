@@ -35,7 +35,7 @@ class Router
         return $resourceValue ?: false;
     }
 
-    public static function runCallback(string $route, callable|array $callback): void
+    public static function runCallback(string $route, callable|array $callback, ?string $middleware=null): void
     {
         if (gettype($callback) == 'array')
         {
@@ -45,12 +45,14 @@ class Router
                 $resourceRoute = str_replace('{id}', $resourceValue, $route);
                 if ($resourceRoute == self::getRoute())
                 {
+                    self::middleware($middleware);
                     (new $callback[0])->{$callback[1]}();
                     exit();
                 }
             }
             if ($route == self::getRoute())
             {
+                self::middleware($middleware);
                 (new $callback[0])->{$callback[1]}();
                 exit();
             }
@@ -64,19 +66,21 @@ class Router
             $resourceRoute = str_replace('{id}', $resourceValue, $route);
             if ($resourceRoute == self::getRoute())
             {
+                self::middleware($middleware);
                 $callback($resourceValue);
                 exit();
             }
         }
         if ($route == self::getRoute())
         {
+            self::middleware($middleware);
             $callback();
             exit();
         }
     }
 
 
-    public static function get(string $route, callable|array $callback): void
+    public static function get(string $route, callable|array $callback, ?string $middleware=null): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET')
         {
@@ -113,6 +117,19 @@ class Router
             self::runCallback($route, $callback);
         }
     }
+    public  static function middleware(?string  $middleware=null): void{
+        if($middleware){
+            $middlewareConfig=require '../config/middleware.php';
+            if(is_array($middlewareConfig)){
+                if(array_key_exists($middleware, $middlewareConfig)){
+                    $middlewareClass=$middlewareConfig[$middleware];
+                    (new $middlewareClass)->handle();
+                }
+            }
+        }
+
+    }
+
 
     public static function isApiCall(): bool
     {
