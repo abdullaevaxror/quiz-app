@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use App\Traits\Validator;
+use JetBrains\PhpStorm\NoReturn;
+use Src\Auth;
 
 class UserController
 {
@@ -36,7 +38,7 @@ class UserController
             ]);
         }
         apiResponse([
-            'error' =>
+            'errors' =>
         [
             'message' => 'Invalid email or password'
         ]
@@ -45,15 +47,15 @@ class UserController
     }
 
 
-    public function show()
+     #[NoReturn] public function show(): void
     {
+        $user = Auth::user();
         apiResponse([
-            'user' => [
-                'name' => 'John Doe',
-                'email' => 'john@doe.com',
-            ]
+            'message' => 'User information',
+            'data' => $user
         ]);
     }
+
 
 }
 

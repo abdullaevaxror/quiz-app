@@ -3,11 +3,12 @@
 namespace Src;
 
 use App\Models\DB;
+use App\Models\User;
 use PDO;
 
 class Auth
 {
-    public static function check(): bool
+    public static function getToken(): array|string
     {
         $headers = getallheaders();
         if (!isset($headers['Authorization']))
@@ -23,16 +24,28 @@ class Auth
             ],400);
         }
 
-        $token = str_replace('Bearer ', '', $headers['Authorization']);
+        return str_replace('Bearer ', '', $headers['Authorization']);
+
+    }
+    private static function getUserCorrectToken(): mixed
+    {
         $db = new DB();
         $pdo = $db->getConnection();
-        $query = "SELECT * FROM user_api_tokens WHERE token=:token ";
+        $query = "SELECT * FROM user_api_tokens WHERE token=:token and expires_at>=NOW() ";
         $stmt = $pdo->prepare($query);
         $stmt->execute([
-            ':token' => $token
+            ':token' => self::getToken()
         ]);
-        $apiToken = $stmt->fetch();
-        if (!$apiToken)
+        return $stmt->fetch();
+
+    }
+
+
+    public static function check(): bool
+    {
+
+
+        if (!self::getUserCorrectToken())
         {
             apiResponse([
                 'message' => 'Unauthorized'
@@ -40,4 +53,19 @@ class Auth
         }
         return true;
     }
+    public static function user()
+    {
+        $token = self::getUserCorrectToken();
+        if (!$token){
+            apiResponse([
+                'errors' => [
+                    'message' => 'Unauthorized'
+                ]
+            ], 401);
+        }
+        $user = new User();
+        return $user->getUserById($token->user_id);
+    }
+
+
 }
