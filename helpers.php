@@ -9,6 +9,13 @@ function view(string $page, array $data = [])
     require 'resources/views/' . $page . '.php';
 }
 
+function components(string $page, array $data = [])
+{
+    extract($data);
+    require 'resources/views/components/' . $page . '.php';
+
+}
+
 
 function redirect(string $url)
 {
