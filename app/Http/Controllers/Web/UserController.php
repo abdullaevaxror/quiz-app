@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
+use JetBrains\PhpStorm\NoReturn;
+
 class UserController
 {
     public function home(): void
@@ -19,6 +21,10 @@ class UserController
     {
         view('/dashboard/quizzes');
 
+    }
+    #[NoReturn] public function handlePost(): void
+    {
+        dd($_REQUEST);
     }
 
 }

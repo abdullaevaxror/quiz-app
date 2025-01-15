@@ -5,7 +5,7 @@ async function user(){
             document.getElementById('userName').innerText = user.data.full_name;
         })
         .catch((error) => {
-            window.location.href = '/login';
+
         })
 }
 user();

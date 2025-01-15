@@ -22,7 +22,7 @@ class User extends DB
         ]);
         $userId = $this->conn->lastInsertId();
         $this->createApiToken($userId);
-        return $userId;
+        return true;
 
     }
     public function getUser(string $email, string $password): bool
