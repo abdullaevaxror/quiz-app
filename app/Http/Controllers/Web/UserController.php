@@ -8,5 +8,12 @@ class UserController
     {
         view('dashboard/home');
     }
+    public function createQuiz(): void{
+        view('/dashboard/create-quiz');
+    }
+    public function statistics(): void
+    {
+        view('/dashboard/statistics');
+    }
 
 }
