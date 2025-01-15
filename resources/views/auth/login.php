@@ -1,13 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Quiz App</title>
-    <link rel="stylesheet" href="css/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+<?php require '../resources/views/components/header.php'; ?>
 <body class="bg-gray-50">
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
@@ -56,7 +47,25 @@
         </form>
     </div>
 </div>
-<script src="js/main.js"></script>
-</body>
-</html>
+<script>
 
+    async function login() {
+        event.preventDefault()
+        let form = document.getElementById("form"),
+            formData = new FormData(form);
+        const {allFetch: apiFetch} = await import('./utils/allFetch.js');
+        await allFetch('/login', {method: 'POST', body: formData})
+            .then((data) => {
+                localStorage.setItem('token',data.token)
+                window.location.href = '/dashboard';
+            })
+            .catch((error) => {
+                document.getElementById('error').innerHTML='';
+                Object.keys(error.data.errors).forEach(err => {
+                    document.getElementById('error').innerHTML += `<p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+                })
+            });
+    }
+
+</script>
+<?php require '../resources/views/components/footer.php'; ?>

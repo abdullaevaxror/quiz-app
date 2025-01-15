@@ -23,6 +23,9 @@ class HomeController
     {
         view('auth/register');
     }
-
+    public function quizzes(): void
+    {
+        view('dashboard/quizzes');
+    }
 
 }

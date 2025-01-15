@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Quiz App</title>
-    <link rel="stylesheet" href="css/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+<?php require '../resources/views/components/header.php'; ?>
 <body class="bg-gray-50">
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
@@ -19,7 +11,7 @@
                 </a>
             </p>
         </div>
-        <form id="form" class="mt-8 space-y-6" action="#" method="POST">
+        <form id="form" class="mt-8 space-y-6" method="POST" onsubmit="register()">
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
                     <label for="name" class="sr-only">Full name</label>
@@ -57,7 +49,7 @@
             </div>
 
             <div>
-                <button type="button" onclick="register()"
+                <button type="submit"
                         class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Create Account
 
@@ -66,7 +58,35 @@
         </form>
     </div>
 </div>
-<script src="js/main.js"></script>
-</body>
-</html>
+<script>
 
+    async function register(event) {
+        event.preventDefault();
+        let form = document.getElementById("register-form"),
+            formData = new FormData(form);
+        try {
+            const { default: apiFetch } = await import('./js/utils/allFetch.js');
+            let data = await apiFetch('/register', {
+                method: "POST",
+                body: formData
+            });
+
+            localStorage.setItem('token', data.token);
+            window.location.href = '/dashboard';
+        } catch (error) {
+            console.error(error);
+            document.getElementById('error').innerHTML = "";
+            if (error.data && error.data.errors) {
+                Object.keys(error.data.errors).forEach(err => {
+                    document.getElementById('error').innerHTML += `
+                        <p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+                });
+            } else {
+                document.getElementById('error').innerHTML = `<p class="text-red-500 mt-1">Something went wrong. Please try again.</p>`;
+            }
+        }
+    }
+
+</script>
+
+<?php require '../resources/views/components/footer.php'; ?>

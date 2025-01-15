@@ -1,13 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Quiz App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+<?php require '../resources/views/components/header.php'; ?>
 <body class="bg-gray-100">
 <div class="min-h-screen flex">
     <!-- Sidebar -->
@@ -21,16 +12,16 @@
             </div>
         </div>
         <nav class="flex-grow p-4">
-            <a href="dashboard.html" class="block p-3 mb-2 text-gray-800 bg-gray-100 rounded-lg">
+            <a href="/dashboard" class="block p-3 mb-2 text-gray-800 bg-gray-100 rounded-lg">
                 <i class="fas fa-home mr-2"></i> Dashboard
             </a>
-            <a href="my-quizzes.html" class="block p-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <a href="/quizzes" class="block p-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                 <i class="fas fa-book mr-2"></i> My Quizzes
             </a>
-            <a href="create-quiz.html" class="block p-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <a href="/create_quiz" class="block p-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                 <i class="fas fa-plus mr-2"></i> Create Quiz
             </a>
-            <a href="statistics.html" class="block p-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <a href="/statistic" class="block p-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                 <i class="fas fa-chart-bar mr-2"></i> Statistics
             </a>
         </nav>
@@ -48,7 +39,7 @@
 
                     <div class="flex items-center space-x-2">
                         <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
-                        <span class="text-gray-700 font-medium">John Doe</span>
+                        <span class="text-gray-700 font-medium" id="userName"></span>
                     </div>
                 </div>
             </div>
@@ -147,5 +138,4 @@
         </main>
     </div>
 </div>
-</body>
-</html>
+<?php require '../resources/views/components/footer.php'; ?>
