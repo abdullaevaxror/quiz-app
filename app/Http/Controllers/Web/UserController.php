@@ -24,7 +24,7 @@ class UserController
     }
     #[NoReturn] public function handlePost(): void
     {
-        dd($_REQUEST);
+
     }
 
 }
