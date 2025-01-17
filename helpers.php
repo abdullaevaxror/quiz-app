@@ -8,6 +8,12 @@ function view(string $page, array $data = [])
     extract($data); // Bu yerda array "key" ni varible "value" ni esa qiymati qilib oladi
     require 'resources/views/' . $page . '.php';
 }
+function quiz(string $page, array $data = [])
+{
+    extract($data); // Bu yerda array "key" ni varible "value" ni esa qiymati qilib oladi
+    require 'resources/views/quiz' . $page . '.php';
+}
+
 
 
 function redirect(string $url)

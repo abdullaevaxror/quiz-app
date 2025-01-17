@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <a href="dashboard.html" class="py-2 px-4 text-gray-500 hover:text-gray-700">Dashboard</a>
+                <a href="/dashboard" class="py-2 px-4 text-gray-500 hover:text-gray-700">Dashboard</a>
                 <a href="profile.html" class="py-2 px-4 text-gray-500 hover:text-gray-700">Profile</a>
             </div>
         </div>

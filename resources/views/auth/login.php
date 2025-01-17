@@ -11,7 +11,7 @@
                 </a>
             </p>
         </div>
-        <form  id="form" class="mt-8 space-y-6"  method="POST" onsubmit="login()">
+        <form  id="login-form" class="mt-8 space-y-6"  method="POST" onsubmit="login()">
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
                     <label for="email" class="sr-only">Email address</label>
@@ -50,19 +50,24 @@
 <script>
 
     async function login() {
-        event.preventDefault()
-        let form = document.getElementById("form"),
+        event.preventDefault();
+        let form = document.getElementById("login-form"),
             formData = new FormData(form);
-        const {allFetch: apiFetch} = await import('./utils/allFetch.js');
-        await allFetch('/login', {method: 'POST', body: formData})
-            .then((data) => {
-                localStorage.setItem('token',data.token)
-                window.location.href = '/dashboard';
-            })
-            .catch((error) => {
-                document.getElementById('error').innerHTML='';
+        const { default: apiFetch } = await import('./js/utils/allFetch.js');
+        await apiFetch('/login', {
+            method: "Post",
+            body: formData
+        }).then(data =>{
+            localStorage.setItem('token', data.token);
+            window.location.href='/dashboard';
+        })
+            .catch((error)=>{
+                console.error(error.data.errors);
+                document.getElementById('error').innerHTML = "";
                 Object.keys(error.data.errors).forEach(err => {
-                    document.getElementById('error').innerHTML += `<p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+                    document.getElementById('error').innerHTML += `
+                <p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+
                 })
             });
     }

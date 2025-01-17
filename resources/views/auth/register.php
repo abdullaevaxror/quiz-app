@@ -11,7 +11,7 @@
                 </a>
             </p>
         </div>
-        <form id="form" class="mt-8 space-y-6" method="POST" onsubmit="register()">
+        <form id="register-form" class="mt-8 space-y-6" method="POST" onsubmit="register()">
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
                     <label for="name" class="sr-only">Full name</label>
@@ -60,32 +60,29 @@
 </div>
 <script>
 
-    async function register(event) {
+    async function register() {
         event.preventDefault();
         let form = document.getElementById("register-form"),
             formData = new FormData(form);
-        try {
-            const { default: apiFetch } = await import('./js/utils/allFetch.js');
-            let data = await apiFetch('/register', {
-                method: "POST",
-                body: formData
-            });
-
+        const { default: apiFetch } = await import('./js/utils/allFetch.js');
+        await apiFetch('/register', {
+            method: "Post",
+            body: formData
+        }).then(data =>{
             localStorage.setItem('token', data.token);
-            window.location.href = '/dashboard';
-        } catch (error) {
-            console.error(error);
-            document.getElementById('error').innerHTML = "";
-            if (error.data && error.data.errors) {
+            window.location.href='/dashboard';
+        })
+            .catch((error)=>{
+                console.error(error.data.errors);
+                document.getElementById('error').innerHTML = "";
                 Object.keys(error.data.errors).forEach(err => {
                     document.getElementById('error').innerHTML += `
-                        <p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
-                });
-            } else {
-                document.getElementById('error').innerHTML = `<p class="text-red-500 mt-1">Something went wrong. Please try again.</p>`;
-            }
-        }
+                <p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+
+                })
+            });
     }
+
 
 </script>
 

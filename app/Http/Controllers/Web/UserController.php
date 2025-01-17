@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\WEB;
 
 class UserController
 {
     public function home(): void
     {
         view('dashboard/home');
+
     }
     public function quizzes():void
     {
@@ -19,6 +20,10 @@ class UserController
     public function statistic():void
     {
         view('dashboard/statistics');
+    }
+    public function take_quiz():void
+    {
+        view('quiz/take_quiz');
     }
 
 }

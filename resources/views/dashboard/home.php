@@ -1,5 +1,7 @@
 <?php require '../resources/views/components/header.php'; ?>
-<body class="bg-gray-100">
+<script src="js/dashboard/getUserInfo.js"></script>
+
+<div class="bg-gray-100">
 <div class="min-h-screen flex">
     <!-- Sidebar -->
     <aside class="bg-white w-64 min-h-screen flex flex-col shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in fixed md:static z-30" id="sidebar">
@@ -27,8 +29,7 @@
         </nav>
     </aside>
 
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
+    <!-- Main Content -->class="flex-1 flex flex-col">
         <!-- Top Navigation -->
         <header class="bg-white shadow-sm">
             <div class="h-16 flex items-center justify-between px-4">
