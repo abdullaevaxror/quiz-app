@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Option extends DB
 {
-    public function create( int $question_id,string $option_text, bool $isCorrect)
+    public function create( int $question_id,string $option_text, bool $isCorrect): int
     {
         $query = "INSERT INTO options (question_id, option_text, isCorrect, updated_at, created_at) 
                     VALUES(:question_id, :option_text, :isCorrect, NOW(), NOW())";

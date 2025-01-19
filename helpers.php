@@ -15,6 +15,13 @@ function components(string $page, array $data = [])
     require 'resources/views/components/' . $page . '.php';
 
 }
+function quiz(string $page, array $data = [])
+{
+    extract($data);
+    require 'resources/views/quiz/' . $page . '.php';
+
+}
+
 
 
 function redirect(string $url)

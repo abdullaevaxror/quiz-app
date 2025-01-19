@@ -22,6 +22,9 @@ class UserController
         view('/dashboard/quizzes');
 
     }
+    public function take_quiz(): void{
+        view('quiz/take-quiz');
+    }
     #[NoReturn] public function handlePost(): void
     {
 
