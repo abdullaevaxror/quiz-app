@@ -25,6 +25,12 @@ class UserController
     public function take_quiz(): void{
         view('quiz/take-quiz');
     }
+
+    public function update(int $id): void
+    {
+        view('/dashboard/update-quiz', ['id'=>$id]);
+
+    }
     #[NoReturn] public function handlePost(): void
     {
 

@@ -24,6 +24,17 @@ class Quiz extends DB
         $stmt->execute(["user_id" => $user_id]);
         return $stmt->fetchAll();
     }
+    public function update (int $quiz_id, string $title, string $description, int $timeLimit): bool
+    {
+        $query="Update quizzes set title=:title, description=:description, timeLimit=:timeLimit where id=:quiz_id";
+        $stmt=$this->con->prepare($query);
+        return $stmt->execute([
+            ':title'=>$title,
+            ':description'=>$description,
+            ':timeLimit'=>$timeLimit,
+            ':quiz_id'=>$quiz_id
+        ]);
+    }
     public function delete(int $quiz_id): bool
     {
         $query = "DELETE FROM quizzes WHERE id = :quiz_id";

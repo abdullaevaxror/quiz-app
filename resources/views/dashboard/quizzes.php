@@ -76,13 +76,14 @@
 <script>
      async   function quizzes(){
 
-        const {default: apiFetch } = await import('/js/utils/apiFetch.js'),
-            quizList=document.getElementById('quizList');
+        const {default: apiFetch } = await import('/js/utils/apiFetch.js');
+           const quizList=document.getElementById('quizList');
         await apiFetch('/quizzes', {method: 'GET'})
             .then((data) => {
-                console.log(data.quizzes)
+                data.quizzes=data.quizzes || [];
+                console.log(data.quizzes);
                 data.quizzes.forEach((quiz)=> {
-                    console.log(quiz);
+
                     quizList.innerHTML +=`
                       <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex justify-between items-start mb-4">
@@ -110,13 +111,13 @@
                         <span class="text-sm text-gray-500">75% Completion Rate</span>
                     </div>
                     <div class="flex justify-between">
-                        <button class="text-indigo-600 hover:text-indigo-800">Edit</button>
+                        <a href="/dashboard/quizzes/${quiz.id}/update" class="text-indigo-600 hover:text-indigo-800">Edit</a>
                         <button class="text-green-600 hover:text-green-800">View Results</button>
                         <button class="text-red-600 hover:text-red-800" onclick="deleteQuiz(${quiz.id})">Delete</button>
                     </div>
                 </div>
 
-                    `
+                    `;
                 });
 
             })
@@ -130,9 +131,10 @@
               const {default: apiFetch } = await import('/js/utils/apiFetch.js');
               await apiFetch(`/quizzes/${id}`, {method: 'DELETE'})
                   .then((data)=>{
-                      window.location.reload();
+                      window.location.href='/dashboard/quizzes'
+                      // window.location.reload();
                   })
-                  .catch((error)={
+                  .catch((error)=>{
                       alert("Internet yaxshi emas");
                   });
           }
