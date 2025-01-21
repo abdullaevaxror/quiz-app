@@ -1,29 +1,39 @@
 <?php
 
-namespace App\Http\Controllers\WEB;
+namespace App\Http\Controllers\Web;
+
+use JetBrains\PhpStorm\NoReturn;
 
 class UserController
 {
     public function home(): void
     {
         view('dashboard/home');
+    }
+    public function create_quiz(): void{
+        view('/dashboard/create-quiz');
+    }
+    public function statistics(): void
+    {
+        view('/dashboard/statistics');
+    }
+    public function quizzes(): void
+    {
+        view('/dashboard/quizzes');
 
     }
-    public function quizzes():void
-    {
-        view('dashboard/quizzes');
+    public function take_quiz(): void{
+        view('quiz/take-quiz');
     }
-    public function create_quiz():void
+
+    public function update(int $id): void
     {
-        view('dashboard/create-quiz');
+        view('/dashboard/update-quiz', ['id'=>$id]);
+
     }
-    public function statistic():void
+    #[NoReturn] public function handlePost(): void
     {
-        view('dashboard/statistics');
-    }
-    public function take_quiz():void
-    {
-        view('quiz/take_quiz');
+
     }
 
 }

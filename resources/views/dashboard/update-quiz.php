@@ -125,7 +125,7 @@
                 formData = new FormData(form);
 
             const {default: apiFetch } = await import('/js/utils/apiFetch.js');
-            await apiFetch('/quizzes', {method: 'POST', body: formData})
+            await apiFetch(`/quizzes/${<?php echo $id; ?>}`, {method: 'PUT', body: formData})
                 .then((data) => {
                     window.location.href='/dashboard/quizzes';
                 })
