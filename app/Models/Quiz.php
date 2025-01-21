@@ -20,4 +20,13 @@ class Quiz extends DB
 
     }
 
+    public function geByUserId (int $userId): array|bool {
+        $query= "SELECT * FROM quizzes WHERE user_id = :user_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':user_id' => $userId,
+        ]);
+        return $stmt->fetchAll();
+    }
+
 }

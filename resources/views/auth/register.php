@@ -1,4 +1,4 @@
-<?php require '../resources/views/components/header.php'; ?>
+<?php components('dashboard/header'); ?>
 <body class="bg-gray-50">
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
@@ -64,26 +64,27 @@
         event.preventDefault();
         let form = document.getElementById("register-form"),
             formData = new FormData(form);
-        const { default: apiFetch } = await import('./js/utils/allFetch.js');
+        const { default: apiFetch } = await import('/js/utils/apiFetch.js');
         await apiFetch('/register', {
-            method: "Post",
+            method: "POST",
             body: formData
         }).then(data =>{
             localStorage.setItem('token', data.token);
             window.location.href='/dashboard';
         })
             .catch((error)=>{
-                console.error(error.data.errors);
+
                 document.getElementById('error').innerHTML = "";
+                console.error(error.data);
                 Object.keys(error.data.errors).forEach(err => {
                     document.getElementById('error').innerHTML += `
                 <p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
 
-                })
+                });
             });
     }
 
 
 </script>
 
-<?php require '../resources/views/components/footer.php'; ?>
+<?php components('dashboard/footer'); ?>

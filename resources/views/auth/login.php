@@ -1,4 +1,4 @@
-<?php require '../resources/views/components/header.php'; ?>
+<?php components('dashboard/header'); ?>
 <body class="bg-gray-50">
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
@@ -6,7 +6,7 @@
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
             <p class="mt-2 text-center text-sm text-gray-600">
                 Or
-                <a href="register.html" class="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">
                     create a new account
                 </a>
             </p>
@@ -53,7 +53,7 @@
         event.preventDefault();
         let form = document.getElementById("login-form"),
             formData = new FormData(form);
-        const { default: apiFetch } = await import('./js/utils/allFetch.js');
+        const { default: apiFetch } = await import('/js/utils/apiFetch.js');
         await apiFetch('/login', {
             method: "Post",
             body: formData
@@ -73,4 +73,4 @@
     }
 
 </script>
-<?php require '../resources/views/components/footer.php'; ?>
+<?php components('dashboard/footer'); ?>
