@@ -1,5 +1,5 @@
 <?php components('dashboard/header'); ?>
-    <script src="/public/js/dashboard/getUserInfo.js"></script>
+    <script src="js/dashboard/getUserInfo.js"></script>
     <div class="bg-gray-100">
         <div class="min-h-screen flex">
             <!-- Sidebar -->
@@ -15,7 +15,7 @@
                         <div class="flex items-center space-x-4">
 
                             <div class="flex items-center space-x-2">
-                                <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+                                <img src="https://cdn-icons-png.flaticon.com/512/9203/9203764.png" alt="Profile" class="w-10 h-10 rounded-full">
                                 <span class="text-gray-700 font-medium" id="userName"></span>
                             </div>
                         </div>

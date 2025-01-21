@@ -8,7 +8,7 @@ class Quiz extends DB
 {
     public  function create(int $userId, string $title, string $description, int $timeLimit): int
     {
-        $query = "INSERT INTO quizzes (user_id, title, description, time_limit ,updated_at, created_at) VALUES(:user_id, :title, :description, :time_limit, NOW(), NOW())";
+        $query = "INSERT INTO quizzes (user_id, title, description, time_limit, updated_at, created_at) VALUES(:user_id, :title, :description, :time_limit, NOW(), NOW())";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
             ':user_id' => $userId,
@@ -20,7 +20,7 @@ class Quiz extends DB
 
     }
 
-    public function geByUserId (int $userId): array|bool {
+    public function getByUserId (int $userId): array|bool {
         $query= "SELECT * FROM quizzes WHERE user_id = :user_id";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
