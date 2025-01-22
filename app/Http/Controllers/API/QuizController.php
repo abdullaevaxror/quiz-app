@@ -25,7 +25,7 @@ class QuizController
         $quizItems = $this->validate([
             'title' => 'string',
             'description' => 'string',
-            'timeLimit' => 'integer',
+            'timeLimit' => 'int',
             'questions' => 'array',
 
         ]);
@@ -64,6 +64,7 @@ class QuizController
         $option = new Option();
 
         $quiz->update($quiz_id, $quizItems['title'], $quizItems['description'], $quizItems['timeLimit']);
+
 
         $question->deleteByQuizId($quiz_id);
 
