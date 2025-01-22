@@ -45,5 +45,11 @@ class Quiz extends DB
         return $stmt->execute(["quiz_id" => $quiz_id]);
 
     }
+    public function find(int $quiz_id){
+        $query = "SELECT * FROM quizzes WHERE id = :quiz_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(["quiz_id" => $quiz_id]);
+        return $stmt->fetch();
+    }
 
 }
