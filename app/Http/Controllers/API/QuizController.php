@@ -32,7 +32,7 @@ class QuizController
         apiResponse(['message'=>'Quiz not found'],404);
 
     }
-    public  function showByUniqueValue(int $uniqueValue)
+    public  function showByUniqueValue(string $uniqueValue)
     {
         $quiz = (new Quiz())->findByUniqueValue($uniqueValue);
         if ($quiz) {

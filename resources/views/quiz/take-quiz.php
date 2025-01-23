@@ -142,30 +142,31 @@
     <script>
         let startButton = document.getElementById('start-btn');
         startButton.addEventListener('click', () => {
-            async function getQuizItems(){
-
-                const {default: apiFetch } = await import('./js/utils/apiFetch.js');
-                await apiFetch(`/quizzes/<?php echo $uniqueValue ?>/getByUniqueValue`, {method: 'GET'})
-                    .then((data) => {
-                        document.getElementById('title').innerText=data.title;
-                        document.getElementById('description').innerText=data.title;
-                        document.getElementById('time-taken').innerText=data.title;
-
-                    })
-                    .catch((error) => {
-                        document.getElementById('error').innerHTML = '';
-                        Object.keys(error.data.errors).forEach(err => {
-                            document.getElementById('error').innerHTML += `<p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
-                        })
-                    });
-            }
-            getQuizItems();
 
             document.getElementById('start-card').classList.add('hidden');
             document.getElementById('questionContainer').classList.remove('hidden');
 
 
         });
+        async function getQuizItems(){
+
+            const {default: apiFetch } = await import('/js/utils/apiFetch.js');
+            await apiFetch(`/quizzes/<?php echo $uniqueValue ?>/getByUniqueValue`, {method: 'GET'})
+                .then((data) => {
+                    document.getElementById('title').innerText=data.title;
+                    document.getElementById('description').innerText=data.description;
+                    document.getElementById('time-taken').innerText=data.time_limit;
+
+                })
+                .catch((error) => {
+                    document.getElementById('error').innerHTML = '';
+                    Object.keys(error.data.errors).forEach(err => {
+                        document.getElementById('error').innerHTML += `<p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+                    })
+                });
+        }
+        getQuizItems();
+
         // Timer functionality
         function startTimer(duration, display) {
             let timer = duration;
