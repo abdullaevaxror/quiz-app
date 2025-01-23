@@ -1,9 +1,10 @@
 <?php
 
 
-use App\Http\Controllers\API\QuizController;
+
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\QuizController;
 use src\Router;
 
 
@@ -19,7 +20,7 @@ Router::get('/dashboard/quizzes', [UserController::class, 'quizzes']);
 Router::get('/dashboard/quizzes/{id}/update', [UserController::class, 'update']);
 
 
-Router::get('/take-quiz', [UserController::class, 'take_quiz']);
+Router::get('/take-quiz/{id}',  [QuizController::class,'take_quiz']);
 
 Router::post('/dashboard/create-quiz', [UserController::class, 'handlePost']);
 

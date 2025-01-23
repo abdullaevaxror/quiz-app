@@ -47,11 +47,20 @@ class Quiz extends DB
         return $stmt->execute(["quiz_id" => $quiz_id]);
 
     }
-    public function find(int $quiz_id){
+    public function find($quiz_id){
         $query = "SELECT * FROM quizzes WHERE id = :quiz_id";
         $stmt = $this->conn->prepare($query);
         $stmt->execute(["quiz_id" => $quiz_id]);
         return $stmt->fetch();
     }
+
+
+    public function findByUniqueValue(string $uniqueValue){
+        $query = "SELECT * FROM quizzes WHERE unique_value= :uniqueValue";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(["uniqueValue" => $uniqueValue]);
+        return $stmt->fetch();
+    }
+
 
 }
