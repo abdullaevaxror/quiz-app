@@ -29,7 +29,7 @@ class QuizController
         apiResponse($quiz);
 
     }
-    #[NoReturn] public function store(): void
+     #[NoReturn] public function store(): void
     {
         $quizItems = $this->validate([
             'title' => 'string',

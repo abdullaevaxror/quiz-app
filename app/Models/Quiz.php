@@ -6,6 +6,8 @@ use App\Models\DB;
 
 class Quiz extends DB
 {
+
+
     public function create(int $user_id, string $title, string $description, int $time_limit)
     {
 
@@ -29,8 +31,8 @@ class Quiz extends DB
     public function update (int $quiz_id, string $title, string $description, int $timeLimit): bool
     {
 
-        $query="Update quizzes set title=:title, description=:description, timeLimit=:timeLimit where id=:quiz_id";
-        $stmt=$this->con->prepare($query);
+        $query="Update quizzes set title=:title, description=:description, time_limit=:timeLimit where id=:quiz_id";
+        $stmt=$this->conn->prepare($query);
         return $stmt->execute([
             ':title'=>$title,
             ':description'=>$description,

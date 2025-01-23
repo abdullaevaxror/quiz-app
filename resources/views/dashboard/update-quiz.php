@@ -257,6 +257,7 @@
                     questionsContainer.innerHTML = '';
                     data.questions.forEach((question, index) => {
                         questionCounter = index;
+
                         questionsContainer.innerHTML += `
                             <div class="p-4 border border-gray-200 rounded-lg" data-question-id="1">
                                             <div>
@@ -280,7 +281,7 @@
                                                    ${question.options.map((option, oIndex) => {
                             return `<div class="flex items-center gap-4">
 
-                                                                <input type="radio" name="questions[${index}][correct]" value="${oIndex}" ${option.is_correct ? 'checked' : ''}
+                                                                <input type="radio" name="questions[${index}][correct]" value="${oIndex}" ${option.isCorrect ? 'checked' : ''}
                                                                    class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                                                             <input type="text" name="questions[${index}][options][]"
                                                                    placeholder="Option 1" value="${option.option_text}" required

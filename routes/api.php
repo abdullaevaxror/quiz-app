@@ -13,4 +13,4 @@ Router::get('/api/quizzes', [QuizController::class, 'index'], 'auth:api');
 Router::delete('/api/quizzes/{id}', [QuizController::class, 'destroy'], 'auth:api');
 Router::put('/api/quizzes/{id}', [QuizController::class, 'update'], 'auth:api');
 
-Router::put('/api/quizzes/{id}', [QuizCOntroller::class, 'show'], 'auth:api');
+Router::get('/api/quizzes/{id}', [QuizController::class, 'show'], 'auth:api');
