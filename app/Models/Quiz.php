@@ -6,35 +6,61 @@ use App\Models\DB;
 
 class Quiz extends DB
 {
-    public  function create(int $userId, string $title, string $description, int $timeLimit): int
+
+
+    public function create(int $user_id, string $title, string $description, int $time_limit)
     {
-        $query = "INSERT INTO quizzes (user_id, title, description, time_limit, updated_at, created_at) VALUES(:user_id, :title, :description, :time_limit, NOW(), NOW())";
+
+        $query = "INSERT INTO quizzes (user_id, title, description, time_limit, updated_at, created_at) 
+                    VALUES (:user_id, :title, :description, :time_limit, NOW(), NOW())";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
-            ':user_id' => $userId,
-            ':title' => $title,
-            ':description' => $description,
-            ':time_limit' => $timeLimit,
+            "user_id" => $user_id,
+            "title" => $title,
+            "description" => $description,
+            "time_limit" => $time_limit,
         ]);
         return  $this->conn->lastInsertId();
-
     }
-
-    public function getByUserId (int $userId): array|bool {
-        $query= "SELECT * FROM quizzes WHERE user_id = :user_id";
+    public function getByUserId(int $user_id): bool|array{
+        $query = "SELECT * FROM quizzes WHERE user_id = :user_id";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute([
-            ':user_id' => $userId,
-        ]);
+        $stmt->execute(["user_id" => $user_id]);
         return $stmt->fetchAll();
     }
-    public function delete (int $quizId): bool {
+    public function update (int $quiz_id, string $title, string $description, int $timeLimit): bool
+    {
+
+        $query="Update quizzes set title=:title, description=:description, time_limit=:timeLimit where id=:quiz_id";
+        $stmt=$this->conn->prepare($query);
+        return $stmt->execute([
+            ':title'=>$title,
+            ':description'=>$description,
+            ':timeLimit'=>$timeLimit,
+            ':quiz_id'=>$quiz_id
+        ]);
+    }
+    public function delete(int $quiz_id): bool
+    {
         $query = "DELETE FROM quizzes WHERE id = :quiz_id";
         $stmt = $this->conn->prepare($query);
-        return $stmt->execute([
-            ':quiz_id' => $quizId,
-        ]);
+        return $stmt->execute(["quiz_id" => $quiz_id]);
 
     }
+    public function find($quiz_id){
+        $query = "SELECT * FROM quizzes WHERE id = :quiz_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(["quiz_id" => $quiz_id]);
+        return $stmt->fetch();
+    }
+
+
+    public function findByUniqueValue(string $uniqueValue){
+        $query = "SELECT * FROM quizzes WHERE unique_value= :uniqueValue";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(["uniqueValue" => $uniqueValue]);
+        return $stmt->fetch();
+    }
+
 
 }

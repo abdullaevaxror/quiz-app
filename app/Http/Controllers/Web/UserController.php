@@ -22,9 +22,7 @@ class UserController
         view('/dashboard/quizzes');
 
     }
-    public function take_quiz(): void{
-        view('quiz/take-quiz');
-    }
+
 
     public function update(int $id): void
     {
