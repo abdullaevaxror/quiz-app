@@ -135,6 +135,7 @@
                 });
         }
 
+
         quizzes()
 
         async function deleteQuiz(id) {

@@ -4,18 +4,29 @@ namespace App\Traits;
 
 trait Validator
 {
-    public function validate(array $data)
+    public function validate(array $data): array
     {
         $requiredKeys = [];
-        foreach ($data as $key => $value) {
-            if (array_key_exists($key, $_REQUEST) and !empty($_REQUEST[$key])) {
-                continue;
+
+        $updates = file_get_contents('php://input');
+        if ($data = json_decode($updates, true)) {
+            $_REQUEST = array_merge($_REQUEST, $data);
+            if ($updates = json_decode($updates, true)) {
+                $_REQUEST = array_merge($_REQUEST, $updates);
             }
-            $requiredKeys[$key] = $key . " is required";
-        }
-        if (!empty($requiredKeys) ) {
-            apiResponse(['errors'=>$requiredKeys], 400);
+
+            foreach ($data as $key => $value) {
+                if (array_key_exists($key, $_REQUEST) and !empty($_REQUEST[$key])) {
+                    continue;
+                }
+                $requiredKeys[$key] = $key . 'is required';
+            }
+            if (!empty($requiredKeys)) {
+                apiResponse([
+                    'errors' => $requiredKeys], 400);
+            }
         }
         return $_REQUEST;
+
     }
 }

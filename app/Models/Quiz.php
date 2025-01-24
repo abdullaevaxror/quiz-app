@@ -28,5 +28,13 @@ class Quiz extends DB
         ]);
         return $stmt->fetchAll();
     }
+    public function delete (int $quizId): bool {
+        $query = "DELETE FROM quizzes WHERE id = :quiz_id";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute([
+            ':quiz_id' => $quizId,
+        ]);
+
+    }
 
 }

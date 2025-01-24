@@ -46,7 +46,7 @@ class Router
                 if ($resourceRoute == self::getRoute())
                 {
                     self::middleware($middleware);
-                    (new $callback[0])->{$callback[1]}();
+                    (new $callback[0])->{$callback[1]}($resourceValue);
                     exit();
                 }
             }
@@ -89,32 +89,32 @@ class Router
     }
 
 
-    public static function post(string $route, callable|array $callback): void
+    public static function post(string $route, callable|array $callback, ?string $middleware=null): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            self::runCallback($route, $callback);
+            self::runCallback($route, $callback, $middleware);
         }
     }
 
 
 
-    public static function put(string $route, callable|array $callback): void
+    public static function put(string $route, callable|array $callback, ?string $middleware=null): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'PUT')
         {
             if ((isset($_POST['_method']) &&  $_POST['_method'] == 'PUT') || $_SERVER['REQUEST_METHOD'] == 'PUT')
             {
-                self::runCallback($route, $callback);
+                self::runCallback($route, $callback, $middleware);
             }
         }
     }
 
-    public static function delete(string $route, callable|array $callback): void
+    public static function delete(string $route, callable|array $callback, ?string $middleware=null): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
         {
-            self::runCallback($route, $callback);
+            self::runCallback($route, $callback, $middleware);
         }
     }
     public  static function middleware(?string  $middleware=null): void{
@@ -135,11 +135,11 @@ class Router
     {
         return mb_stripos(self::getRoute(), '/api') === 0;
     }
- public static function notFound(): void
- {
-     if (self::isApiCall()){
-         apiResponse(['error'=>'Not found'], 404);
-     }
-     view('404');
- }
+    public static function notFound(): void
+    {
+        if (self::isApiCall()){
+            apiResponse(['error'=>'Not found'], 404);
+        }
+        view('404');
+    }
 }
