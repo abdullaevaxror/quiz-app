@@ -2,29 +2,31 @@
 
 namespace App\Models;
 
-use PDO;
+use App\Models\DB;
 
 class Question extends DB
 {
-    public function create(int $quizId, string $questionText)
+    public function create(int $quizId, string $questionText): false|string
     {
-
         $query = "INSERT INTO questions (quiz_id, question_text, updated_at, created_at)
-                    VALUES (:quizId, :questionText, NOW(), NOW())";
-                $stmt = $this->conn->prepare($query);
-                $stmt->execute([
-                    'quizId' => $quizId,
-                    'questionText' => $questionText,
-                ]);
-                return $this->conn->lastInsertId();
-    }
-    public function deleteByQuizId(int $questionId): bool{
-        $query = "DELETE FROM questions WHERE quiz_id=:questionId";
+                VALUES (:quizId, :question_text, NOW(), NOW())";
         $stmt = $this->conn->prepare($query);
-         return $stmt->execute([
+        $stmt->execute([
+            'quizId' => $quizId,
+            ':question_text' => $questionText,
+        ]);
+        return $this->conn->lastInsertId();
+    }
+
+    public function deleteByQuizId (int $questionId): bool
+    {
+        $query = "DELETE FROM questions WHERE quiz_id = :questionId";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute([
             'questionId' => $questionId,
         ]);
     }
+
     public function getWithOptions(int $quizId): array
     {
         $stmt = $this->conn->prepare("SELECT * FROM questions WHERE quiz_id = :quizId");
@@ -38,6 +40,7 @@ class Question extends DB
         $stmt = $this->conn->prepare($query);
         $stmt->execute($questionIds);
         $options = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        shuffle($options);
 
         $groupedOptions = [];
 
@@ -53,5 +56,14 @@ class Question extends DB
     }
 
 
+    public function getQuestionCountByQuizId(int $quizId)
+    {
+        $query = "SELECT COUNT(id) AS questionCount FROM questions WHERE quiz_id = :quizId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':quizId' => $quizId
+        ]);
+        return $stmt->fetch();
+    }
 
 }

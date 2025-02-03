@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'fb9ea20d97072bf3f457ff560602bda7716cf48c',
+        'reference' => '4c91baac6c435de3787d6ed241016cbf04fe888a',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'fb9ea20d97072bf3f457ff560602bda7716cf48c',
+            'reference' => '4c91baac6c435de3787d6ed241016cbf04fe888a',
             'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
@@ -83,12 +83,12 @@
             'dev_requirement' => false,
         ),
         'symfony/var-dumper' => array(
-            'pretty_version' => 'v6.4.15',
-            'version' => '6.4.15.0',
+            'pretty_version' => 'v6.4.18',
+            'version' => '6.4.18.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/var-dumper',
             'aliases' => array(),
-            'reference' => '38254d5a5ac2e61f2b52f9caf54e7aa3c9d36b80',
+            'reference' => '4ad10cf8b020e77ba665305bb7804389884b4837',
             'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(

@@ -11,14 +11,16 @@ class Quiz extends DB
     public function create(int $user_id, string $title, string $description, int $time_limit)
     {
 
-        $query = "INSERT INTO quizzes (user_id, title, description, time_limit, updated_at, created_at) 
-                    VALUES (:user_id, :title, :description, :time_limit, NOW(), NOW())";
+        $query = "INSERT INTO quizzes ( unique_value,user_id, title, description, time_limit, updated_at, created_at) 
+                    VALUES (:uniqueValue,:user_id, :title, :description, :time_limit, NOW(), NOW())";
         $stmt = $this->conn->prepare($query);
+
         $stmt->execute([
-            "user_id" => $user_id,
-            "title" => $title,
-            "description" => $description,
-            "time_limit" => $time_limit,
+            'uniqueValue' => uniqid(),
+            ':user_id' => $user_id,
+            ':title' => $title,
+            ':description' => $description,
+            ':time_limit' => $time_limit,
         ]);
         return  $this->conn->lastInsertId();
     }
@@ -62,5 +64,44 @@ class Quiz extends DB
         return $stmt->fetch();
     }
 
+    public function totalCountQuizzes(int $userId)
+    {
+        $query = "SELECT COUNT(id) AS TotalAnswers FROM quizzes WHERE user_id = :userId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':userId' => $userId,
+        ]);
+        return $stmt->fetch();
+    }
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
