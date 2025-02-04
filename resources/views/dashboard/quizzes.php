@@ -139,7 +139,7 @@
         }
         const copyContent = async (uniqueValue) =>{
             try {
-                uniqueValue = "<?php echo $_ENV['APP_URL']?>" + '/take-quiz/' + uniqueValue;
+                uniqueValue = "<?php echo $_ENV['APP_URL']?>" + 'take-quiz/' + uniqueValue;
                 await navigator.clipboard.writeText(uniqueValue);
                 alert("Contend copied to cliboard");
             } catch (err){
