@@ -1,6 +1,6 @@
 <?php components('dashboard/header'); ?>
-<script src="/js/dashboard/getUserInfo.js"></script>
-<script src="/js/dashboard/addQuiz.js"></script>
+<script src="<?php echo assets('/js/dashboard/getUserInfo.js')?>"></script>
+<script src="<?php echo assets('/js/dashboard/addQuiz.js') ?>"></script>
 <div class="bg-gray-100">
 <div class="flex min-h-screen">
     <!-- Sidebar -->

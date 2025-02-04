@@ -45,3 +45,10 @@ function dumpDie($value)
     exit();
 }
 
+
+function assets($fileName): string
+{
+    return $_ENV['APP_URL'] .'/public' . $fileName;
+
+}
+

@@ -1,9 +1,8 @@
-
 <?php
-components('/dashboard/header');
+components('dashboard/header');
 //dd($uniqueValue);
 ?>
-<script src="/js/dashboard/getUserInfo.js"></script>
+<script src="<?php echo assets('/js/dashboard/getUserInfo.js')?>"></script>
 <div class="flex flex-col min-h-screen bg-gray-100">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg">
@@ -60,6 +59,7 @@ components('/dashboard/header');
                         <p class="text-gray-600">Time Limit</p>
                     </div>
                 </div>
+
 
                 <button id="start-btn"
                         class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -126,8 +126,8 @@ components('/dashboard/header');
         </div>
         <div id="results-card" class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6 hidden">
             <div class="text-center">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Quiz Complete!</h2>
-                <h3 class="text-xl text-gray-700 mb-6">JavaScript Fundamentals Quiz</h3>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" id="result-title">Quiz Complete!</h2>
+                <h3 class="text-xl text-gray-700 mb-6" id="result-description">JavaScript Fundamentals Quiz</h3>
 
                 <div class="flex justify-center space-x-12 mb-8">
                     <div class="text-center">
@@ -139,6 +139,7 @@ components('/dashboard/header');
                         <p class="text-gray-600">Time Taken</p>
                     </div>
                 </div>
+
 
                 <a href="/dashboard"
                    class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -162,7 +163,6 @@ components('/dashboard/header');
         let questions,
             quizData,
             result;
-
         async function getQuizItems() {
             const {default: apiFetch} = await import('/js/utils/apiFetch.js');
             try {
@@ -227,6 +227,7 @@ components('/dashboard/header');
                 document.getElementById('CurrentProgress').style.width = `${Math.round(progress)}%`;
             }
 
+
             let startBtn = document.getElementById('start-btn');
             startBtn.addEventListener('click', () => {
                 // send request to an API
@@ -235,21 +236,23 @@ components('/dashboard/header');
                     const {default: apiFetch} = await import('/js/utils/apiFetch.js');
                     await apiFetch('/results', {method: 'POST', body: JSON.stringify({quiz_id: quizData.id})})
                         .then((data) => {
-                            console.log(data)
-                            result = data.result;
+                            result =data.result;
                         })
                         .catch((error) => {
-                            document.getElementById('result-time-taken').innerText = error.data.data.result.time_taken + ':00';
+                            let resultData = error.data.data.result;
+                            document.getElementById('result-title').innerText = resultData.quiz.title;
+                            document.getElementById('result-description').innerText = resultData.quiz.description;
+                            document.getElementById('final-score').innerText = resultData.correct_answer_count +'/'+ resultData.question_count;
+                            document.getElementById('result-time-taken').innerText = resultData.time_taken + ":00";
                             document.getElementById('results-card').classList.remove('hidden');
                             document.getElementById('questionContainer').classList.add('hidden');
                         });
                 }
-
                 startQuiz();
                 let startQuizContainer = document.getElementById('start-card');
                 startQuizContainer.classList.add('hidden');
                 document.getElementById('questionContainer').classList.remove('hidden');
-                startTimer(quizData.time_limit * 60, document.getElementById('timer')); // 20 minutes
+                startTimer(quizData.time_limit*60, document.getElementById('timer')); // 20 minutes
             });
 
             function startTimer(duration, display) {
@@ -285,7 +288,8 @@ components('/dashboard/header');
                 }
             });
 
-            document.getElementById('submit-quiz').addEventListener('click', () => {
+
+            document.getElementById('submit-quiz').addEventListener('click', async () => {
                 let form = document.getElementById('options');
                 let formData = new FormData(form);
                 if (!formData.get('answer')) {
@@ -298,31 +302,31 @@ components('/dashboard/header');
                 questions.splice(currentQuestionIndex, 1);
                 let question = questions[currentQuestionIndex],
                     questionContainer = document.getElementById('questionContainer');
-
-                async function submitAnswer() {
-                    const {default: apiFetch} = await import("/js/utils/apiFetch.js");
-                    await apiFetch("/answers", {
-                        method: "POST",
+                async function submitAnswer()
+                {
+                    const {default: apiFetch} = await import('/js/utils/apiFetch.js');
+                    await apiFetch('/answers', {method: 'POST',
                         body: JSON.stringify({
                             result_id: result.id,
                             option_id: formData.get('answer')
+                        })})
+
+                        .then((data) => {
                         })
-                    })
-                        .then(data => {
-                        })
-                        .catch((error) => {
-                            console.error(error.data.errors);
-                            document.getElementById("error").innerHTML = '';
-                            Object.keys(error.data.errors).forEach((err) => {
-                                document.getElementById("error").innerHTML += `<p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
-                            });
+                        .catch((error) =>
+                        {
+                            document.getElementById('error').innerHTML = '';
+                            Object.keys(error.data.errors).forEach(err =>
+                            {
+                                document.getElementById('error').innerHTML += `<p class="text-red-500 mt-1">${error.data.errors[err]}</p>`;
+                            })
                         });
                 }
-
                 submitAnswer();
                 if (question) {
                     displayQuestion(question);
-                } else {
+                }else {
+                    // display result
                     questionContainer.innerHTML = '';
                     document.getElementById('results-card').classList.remove('hidden');
                 }
@@ -341,5 +345,5 @@ components('/dashboard/header');
         });
     </script>
     <?php
-    components('/dashboard/footer');
+    components('dashboard/footer');
     ?>
