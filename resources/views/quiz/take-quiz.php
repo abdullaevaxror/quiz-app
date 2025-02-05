@@ -233,7 +233,7 @@ components('dashboard/header');
                 // send request to an API
                 async function startQuiz() {
                     console.log(quizData)
-                    const {default: apiFetch} = await import("<?php echo assets('/js/utils/apiFetch.js')?>");
+                    const {default: apiFetch} = await import('/js/utils/apiFetch.js');
                     await apiFetch('/results', {method: 'POST', body: JSON.stringify({quiz_id: quizData.id})})
                         .then((data) => {
                             result =data.result;
