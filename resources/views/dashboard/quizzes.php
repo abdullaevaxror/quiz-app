@@ -137,12 +137,16 @@
                     });
             }
         }
-        const copyContent = async (uniqueValue) =>{
+        const copyContent = async (uniqueValue) => {
+            if (!navigator.clipboard) {
+                alert("Clipboard API is not supported in your browser.");
+                return;
+            }
             try {
                 uniqueValue = "<?php echo $_ENV['APP_URL']?>" + 'take-quiz/' + uniqueValue;
                 await navigator.clipboard.writeText(uniqueValue);
-                alert("Contend copied to cliboard");
-            } catch (err){
+                alert("Content copied to clipboard");
+            } catch (err) {
                 console.error("Failed to copy: ", err);
             }
         }
