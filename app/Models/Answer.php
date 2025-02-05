@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Models;
@@ -34,7 +33,7 @@ class Answer extends DB
                         JOIN options ON answers.option_id = options.id
                 WHERE results.user_id = :userId
                         AND results.quiz_id = :quizId
-                        AND options.is_correct = TRUE;";
+                        AND options.isCorrect = TRUE;";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
             ':userId' => $userId,
