@@ -80,6 +80,7 @@
 
                 .then((data) => {
                     data.quizzes.forEach((quiz) => {
+
                         quizList.innerHTML += `
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex justify-between items-start mb-4">
@@ -137,19 +138,65 @@
                     });
             }
         }
-        const copyContent = async (uniqueValue) => {
-            if (!navigator.clipboard) {
-                alert("Clipboard API is not supported in your browser.");
+
+        const copyContent = (uniqueValue) => {
+            if (!document.queryCommandSupported("copy")) {
+                alert("Clipboard nusxalash qo'llab-quvvatlanmaydi.");
                 return;
             }
+
             try {
                 uniqueValue = "<?php echo $_ENV['APP_URL']?>" + 'take-quiz/' + uniqueValue;
-                await navigator.clipboard.writeText(uniqueValue);
+
+                // Yangi textarea elementi yaratamiz
+                const textarea = document.createElement("textarea");
+                textarea.value = uniqueValue;
+
+                // Elementni sahifaga qo'shamiz
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                // Nusxalash buyrug'ini bajarish
+                document.execCommand("copy");
+
+                // Sahifadan elementni olib tashlash
+                document.body.removeChild(textarea);
+
                 alert("Content copied to clipboard");
             } catch (err) {
                 console.error("Failed to copy: ", err);
             }
-        }
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //const copyContent = async (uniqueValue) => {
+        //    if (!navigator.clipboard) {
+        //        alert("Clipboard API is not supported in your browser.");
+        //        return;
+        //    }
+        //    try {
+        //        uniqueValue = "<?php //echo $_ENV['APP_URL']?>//" + 'take-quiz/' + uniqueValue;
+        //        await navigator.clipboard.writeText(uniqueValue);
+        //        alert("Content copied to clipboard");
+        //    } catch (err) {
+        //        console.error("Failed to copy: ", err);
+        //    }
+        //}
 
 
 
