@@ -1,5 +1,6 @@
 #.env
-#.idea
+.idea
 #vendor
 node_modules
 src/output.css
+.gitattributes
