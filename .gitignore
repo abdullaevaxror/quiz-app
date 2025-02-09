@@ -1,6 +1,7 @@
-#.env
+.env
 .idea
-#vendor
+vendor
 node_modules
 src/output.css
 .gitattributes
+#*.linguist-language=PHP
