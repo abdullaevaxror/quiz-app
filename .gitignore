@@ -1,5 +1,5 @@
-.env
-.idea
-vendor
+#.env
+#.idea
+#vendor
 node_modules
 src/output.css
