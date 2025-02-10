@@ -45,7 +45,7 @@ function dumpDie($value)
 
 function assets($fileName): string
 {
-    return $_ENV['APP_URL'] . $fileName;
+    return $_ENV['APP_URL'] .'public' . $fileName;
 
 }
 
